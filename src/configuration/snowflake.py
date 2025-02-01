@@ -4,25 +4,39 @@ from dotenv import load_dotenv
 from snowflake.snowpark import Session
 from snowflake.core import Root
 from src.exception import CustomException  # Assuming you have a CustomException class for handling exgceptions
+import streamlit as st
 
 class SnowflakeConnector:
     """
     A class to handle the connection to Snowflake and manage the session.
     """
 
-    def __init__(self):
+    def __init__(self,snowflake_username,snowflake_password,snowflake_account,snowflake_role,snowflake_warehouse,snowflake_database,snowflake_schema):
         try:
-            load_dotenv()
+            # load_dotenv()
+
+            # self.connection_parameters = {
+            #     "account": os.getenv("SNOWFLAKE_ACCOUNT"),
+            #     "user": os.getenv("SNOWFLAKE_USERNAME"),
+            #     "password": os.getenv("SNOWFLAKE_PASSWORD"),
+            #     "role": os.getenv("SNOWFLAKE_ROLE"),
+            #     "warehouse": os.getenv("SNOWFLAKE_WAREHOUSE"),
+            #     "database": os.getenv("SNOWFLAKE_DATABASE"),
+            #     "schema": os.getenv("SNOWFLAKE_SCHEMA")
+            # }
+
+
 
             self.connection_parameters = {
-                "account": os.getenv("SNOWFLAKE_ACCOUNT"),
-                "user": os.getenv("SNOWFLAKE_USERNAME"),
-                "password": os.getenv("SNOWFLAKE_PASSWORD"),
-                "role": os.getenv("SNOWFLAKE_ROLE"),
-                "warehouse": os.getenv("SNOWFLAKE_WAREHOUSE"),
-                "database": os.getenv("SNOWFLAKE_DATABASE"),
-                "schema": os.getenv("SNOWFLAKE_SCHEMA")
+                "account": snowflake_account,
+                "user": snowflake_username,
+                "password": snowflake_password,
+                "role": snowflake_role,
+                "warehouse": snowflake_warehouse,
+                "database": snowflake_database,
+                "schema": snowflake_schema
             }
+
 
             logging.info("Successfully loaded connection parameters from .env file.")
             
@@ -32,7 +46,7 @@ class SnowflakeConnector:
         
         except Exception as e:
             logging.error(f"Error initializing Snowflake session: {str(e)}")
-            raise CustomException(f"Error initializing Snowflake session: {str(e)}")
+            raise CustomException(f"Error initializing Snowflake session",{str(e)})
 
     def get_session(self):
         """

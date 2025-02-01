@@ -48,3 +48,14 @@ def setup_logger():
             # logging.StreamHandler()  # this line logs to the console
         ]
     )
+
+
+    snowflake_logger1 = logging.getLogger("snowflake.connector")
+    snowflake_logger1.setLevel(logging.ERROR)  
+
+    snowflake_logger2 = logging.getLogger("snowflake.core.rest")
+    snowflake_logger2.setLevel(logging.ERROR)  
+
+    difbotlogger1 = logging.getLogger("urllib3.connectionpool")
+    difbotlogger1.setLevel(logging.ERROR)  
+

@@ -62,10 +62,10 @@ class NewsExtractor:
         df_temp = df_temp[[df_temp.columns[-1]] + list(df_temp.columns[:-1])]
         return df_temp
 
-if __name__ == "__main__":
-    API_KEY = "5eb7fffe17364f9bbce3e17dbeddd867"
-    DIFFBOT_API_TOKEN = "3130e6ff0e12e6877f3b7739d440d539"
-    query = "Tesla"
-    extractor = NewsExtractor(API_KEY, DIFFBOT_API_TOKEN)
-    df_temp = extractor.process_news(query)
-    print(df_temp)
+# if __name__ == "__main__":
+#     API_KEY = "5eb7fffe17364f9bbce3e17dbeddd867"
+#     DIFFBOT_API_TOKEN = "3130e6ff0e12e6877f3b7739d440d539"
+#     query = "Tesla"
+#     extractor = NewsExtractor(API_KEY, DIFFBOT_API_TOKEN)
+#     df_temp = extractor.process_news(query)
+#     print(df_temp)
