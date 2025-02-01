@@ -1,8 +1,6 @@
 from snowflake.cortex import Complete,ExtractAnswer,Sentiment,Translate,EmbedText1024,EmbedText768,ClassifyText,complete
 from snowflake.snowpark import Session
 
-
-
 def summarize_article(user_text, session, query):
     PROMPT_TEMPLATE = f"""
     You are a financial expert and sentiment analysis assistant. Based on the following news article, identify and summarize the financial sentiment 
