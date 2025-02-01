@@ -1,9 +1,8 @@
 streamlit
 pandas
 requests
-snowflake-snowpark-python==1.10.0  # Compatible with Python 3.11
-snowflake-connector-python==3.5.0  # Compatible with Python 3.11
-snowflake-cortex
+snowflake-snowpark-python==1.10.0  # Matches Python 3.11
+snowflake-connector-python==3.5.0  # Compatible with Snowpark
 python-dotenv
 
 
