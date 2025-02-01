@@ -6,6 +6,7 @@ snowflake-connector-python==3.5.0  # Compatible with Snowpark
 python-dotenv
 snowflake-ml-python
 # snowflake-cortex
+snowflake.core
 
 # absl-py==1.4.0
 # aiobotocore==2.17.0
