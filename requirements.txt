@@ -4,8 +4,9 @@ requests
 snowflake-snowpark-python==1.10.0  # Matches Python 3.11
 snowflake-connector-python==3.5.0  # Compatible with Snowpark
 python-dotenv
+snowflake
 snowflake-ml-python
-snowflake-cortex
+# snowflake-cortex
 snowflake.core
 
 # absl-py==1.4.0
