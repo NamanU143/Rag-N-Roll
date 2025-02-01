@@ -169,3 +169,11 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+#environment
+ragenv/
+
+# ipynb research notebooks
+notebooks/
+*.ipynb
+#to not ignore for specific notebooks (e.g. !important_notebook.ipynb)

@@ -1,0 +1,9 @@
+pandas
+requests
+newsapi-python
+bs4
+beautifulsoup4
+transformers
+seaborn
+matplotlib
+snowflake-ml-python
