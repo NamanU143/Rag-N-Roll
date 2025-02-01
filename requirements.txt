@@ -8,3 +8,4 @@ seaborn
 matplotlib
 snowflake-ml-python
 python-dotenv
+snowflake.core
