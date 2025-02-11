@@ -176,8 +176,4 @@ ragenv/
 # ipynb research notebooks
 notebooks/
 *.ipynb
-<<<<<<< HEAD
-#to ignore for specific notebooks (e.g. !important_notebook.ipynb)
-=======
 #to not ignore for specific notebooks (e.g. !important_notebook.ipynb)
->>>>>>> 13f3827b8001b3f256fc883b15e385f482d187b3
