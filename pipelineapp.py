@@ -8,4 +8,7 @@ query = st.text_input("Enter the Stock Symbol :")
 if query:
     st.write(f"You entered: {query}")
     
-pipeline.initiate_pipeline(query=query)
+newsdf = pipeline.initiate_pipeline(query=query)
+
+if not newsdf.empty:
+    st.dataframe(newsdf)
