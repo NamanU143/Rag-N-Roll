@@ -22,7 +22,7 @@ class FieldExtractor:
         try:
             # Access the results attribute
             records = result.results
-            extracted_data = [record.get("TEXT", "") for record in records]
+            extracted_data = [record.get("CONTENT", "") for record in records]
 
             # Filter out empty strings and concatenate the TEXT fields
             concatenated_string = "".join(filter(None, extracted_data))
