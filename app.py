@@ -6,7 +6,7 @@ from src.components.trade_assist_llm import summarize_article, analyze_financial
 from src.components.llm_response_extractor import FieldExtractor
 from src.components.insert_data_into_db import SnowflakeDataInserter
 from src.components.database_manager import SnowflakeDatabaseManager
-from src.components.format_df import SnowflakeDataTypeMapper
+from components.data_mapper import SnowflakeDataTypeMapper
 from src.components.create_cortex_search_service import CortexSearchServiceManager
 from snowflake.core import Root
 from src.logger import setup_logger
@@ -62,13 +62,9 @@ if st.button("Fetch Stock News"):
             db_manager.create_database(DB_NAME)
             db_manager.create_schema(DB_NAME, SCHEMA_NAME)
 
-            # Mapping DataFrame columns to Snowflake-compatible data types
-            data_type_mapper = SnowflakeDataTypeMapper()
-            columns = data_type_mapper.get_column_data_types(stock_news_df)
-
             # Create table
             table_name = "STOCK_NEWS"
-            db_manager.create_table(DB_NAME, SCHEMA_NAME, table_name, columns)
+            db_manager.create_table(DB_NAME, SCHEMA_NAME, stock_news_df)
 
             # Write data to Snowflake
             session.write_pandas(stock_news_df, table_name, auto_create_table=False)

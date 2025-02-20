@@ -40,6 +40,10 @@ class PreprocessNewsdf:
             self.newsdf.columns = [col.upper() for col in self.newsdf.columns]
             logging.info("Converted all column names to uppercase.")
 
+            # Ensure ID column starts from 1 instead of 0
+            self.newsdf["ID"] = range(1, len(self.newsdf) + 1)
+            logging.info("Assigned ID column starting from 1.")
+
             logging.info("Preprocessing completed successfully.")
             return self.newsdf
 
