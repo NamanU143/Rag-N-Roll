@@ -6,7 +6,7 @@ from src.components.trade_assist_llm import summarize_article, analyze_financial
 from src.components.llm_response_extractor import FieldExtractor
 from src.components.insert_data_into_db import SnowflakeDataInserter
 from src.components.database_manager import SnowflakeDatabaseManager
-from components.data_mapper import SnowflakeDataTypeMapper
+from components.format_df import SnowflakeDataTypeMapper
 from src.components.create_cortex_search_service import CortexSearchServiceManager
 from snowflake.core import Root
 from src.logger import setup_logger
@@ -77,7 +77,7 @@ if st.button("Fetch Stock News"):
             # Display results
             st.subheader("Key Points for Traders")
             st.write(summary_result)
-
+            
             st.subheader("Financial Sentiment Analysis")
             st.write(f"Sentiment: {sentiment_result}")
         else:

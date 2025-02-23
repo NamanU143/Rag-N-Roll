@@ -1,4 +1,4 @@
-import logging
+from src.logger import logging
 import requests
 import pandas as pd
 from src.exception import CustomException

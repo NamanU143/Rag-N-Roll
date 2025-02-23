@@ -1,5 +1,5 @@
 import os
-from src.logger import setup_logger
+from src.logger import logging
 import logging
 from dotenv import load_dotenv
 from snowflake.snowpark import Session
@@ -15,7 +15,7 @@ class SnowflakeConnector:
     # def __init__(self,snowflake_username,snowflake_account,snowflake_password,snowflake_role,snowflake_warehouse,snowflake_database,snowflake_schema):
     def __init__(self):
         try:
-            setup_logger()
+            # setup_logger()
 
             # Initialize Snowflake session
             logging.info(">> Initializing Snowflake Session Parameters ")
@@ -24,8 +24,8 @@ class SnowflakeConnector:
             snowflake_account = st.secrets["snowflake"]["account"]
             snowflake_role = st.secrets["snowflake"]["role"]
             snowflake_warehouse = st.secrets["snowflake"]["warehouse"]
-            snowflake_database = st.secrets["snowflake"]["database"]
-            snowflake_schema = st.secrets["snowflake"]["schema"]
+            # snowflake_database = st.secrets["snowflake"]["database"]
+            # snowflake_schema = st.secrets["snowflake"]["schema"]
 
             self.connection_parameters = {
                 "account": snowflake_account ,
@@ -33,8 +33,8 @@ class SnowflakeConnector:
                 "password": snowflake_password,
                 "role": snowflake_role,
                 "warehouse": snowflake_warehouse,
-                "database": snowflake_database,
-                "schema": snowflake_schema
+                # "database": snowflake_database,
+                # "schema": snowflake_schema
             }
             logging.info(">> Snowflake Session Parameters Initialized")
 
@@ -93,6 +93,28 @@ class SnowflakeConnector:
         except Exception as e:
             logging.error(f"Error closing Snowflake session: {str(e)}")
             raise CustomException(f"Error closing Snowflake session: {str(e)}")
+        
+            
+    def update_session(self, database_name: str):
+        """
+        Updates the Snowflake session to include a newly created database.
+
+        Args:
+            database_name (str): The name of the newly created database.
+
+        Returns:
+            None
+        """
+        try:
+            logging.info(f"Updating Snowflake session with new database: {database_name}")
+
+            self.session.sql(f"USE DATABASE {database_name}").collect()
+            self.root = Root(self.session)
+            logging.info(f"Successfully updated session to include database: {database_name}")
+            return self.session
 
 
+        except Exception as e:
+            logging.error(f"Error updating Snowflake session with new database: {str(e)}")
+            raise CustomException(f"Error updating Snowflake session with new database: {str(e)}")
 

@@ -1,15 +1,14 @@
 import pandas as pd
 import requests
 import streamlit as st
-from src.logger import setup_logger
-import logging
+from src.logger import logging
 from src.exception import CustomException
 import time
 
 
 
 # Setting up custom logger
-setup_logger()
+# setup_logger()
 
 class NewsExtractor:
     def __init__(self):

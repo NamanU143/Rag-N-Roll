@@ -1,6 +1,7 @@
 import pandas as pd
-import logging
+from src.logger import logging
 from src.exception import CustomException
+from src.constants.snowflakedatacreds import TABLE_NAME
 
 class SnowflakeDataInserter:
     """
@@ -10,7 +11,7 @@ class SnowflakeDataInserter:
     def __init__(self, session):
         self.session = session  # Snowflake session object
 
-    def insert_dataframe(self, df: pd.DataFrame, table_name: str):
+    def insert_dataframe(self, df: pd.DataFrame):
         """
         Insert a DataFrame into a Snowflake table.
 
@@ -19,6 +20,7 @@ class SnowflakeDataInserter:
             table_name (str): The name of the target table in Snowflake.
         """
         try:
+            table_name = TABLE_NAME
             # Convert the Pandas DataFrame to a Snowflake DataFrame
             snowflake_df = self.session.create_dataframe(df)
             

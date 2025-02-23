@@ -49,12 +49,11 @@ log_file_path = os.path.join(log_folder, datetime.now().strftime("%Y-%m-%d_%H-%M
 
 # Configure logging globally
 logging.basicConfig(
-    filename=log_file_path,
-    level=logging.DEBUG,
+    level=logging.DEBUG,  # Set log level
     format="[ %(asctime)s ] %(lineno)d %(name)s - %(levelname)s: %(message)s",
     handlers=[
-        logging.FileHandler(log_file_path),
-        logging.StreamHandler()  # Logs to console as well
+        logging.FileHandler(log_file_path),  # Log to file
+        # logging.StreamHandler()  # Log to console
     ]
 )
 

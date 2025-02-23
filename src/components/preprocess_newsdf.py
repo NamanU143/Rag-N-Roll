@@ -1,8 +1,8 @@
 from src.exception import CustomException
 import logging
-from src.logger import setup_logger
+from src.logger import logging
 
-setup_logger()
+# setup_logger()
 
 class PreprocessNewsdf:
     def __init__(self, newsdf):

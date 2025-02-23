@@ -1,4 +1,6 @@
 from snowflake.snowpark import Session
+from src.logger import logging
+
 
 def summarize_article(user_text, session, user_query):
     PROMPT_TEMPLATE = f"""
