@@ -93,28 +93,4 @@ class SnowflakeConnector:
         except Exception as e:
             logging.error(f"Error closing Snowflake session: {str(e)}")
             raise CustomException(f"Error closing Snowflake session: {str(e)}")
-        
-            
-    def update_session(self, database_name: str):
-        """
-        Updates the Snowflake session to include a newly created database.
-
-        Args:
-            database_name (str): The name of the newly created database.
-
-        Returns:
-            None
-        """
-        try:
-            logging.info(f"Updating Snowflake session with new database: {database_name}")
-
-            self.session.sql(f"USE DATABASE {database_name}").collect()
-            self.root = Root(self.session)
-            logging.info(f"Successfully updated session to include database: {database_name}")
-            return self.session
-
-
-        except Exception as e:
-            logging.error(f"Error updating Snowflake session with new database: {str(e)}")
-            raise CustomException(f"Error updating Snowflake session with new database: {str(e)}")
 
