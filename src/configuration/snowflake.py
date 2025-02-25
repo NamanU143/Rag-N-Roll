@@ -24,8 +24,8 @@ class SnowflakeConnector:
             snowflake_account = st.secrets["snowflake"]["account"]
             snowflake_role = st.secrets["snowflake"]["role"]
             snowflake_warehouse = st.secrets["snowflake"]["warehouse"]
-            # snowflake_database = st.secrets["snowflake"]["database"]
-            # snowflake_schema = st.secrets["snowflake"]["schema"]
+            snowflake_database = st.secrets["snowflake"]["database"]
+            snowflake_schema = st.secrets["snowflake"]["schema"]
 
             self.connection_parameters = {
                 "account": snowflake_account ,
@@ -33,8 +33,8 @@ class SnowflakeConnector:
                 "password": snowflake_password,
                 "role": snowflake_role,
                 "warehouse": snowflake_warehouse,
-                # "database": snowflake_database,
-                # "schema": snowflake_schema
+                "database": snowflake_database,
+                "schema": snowflake_schema
             }
             logging.info(">> Snowflake Session Parameters Initialized")
 

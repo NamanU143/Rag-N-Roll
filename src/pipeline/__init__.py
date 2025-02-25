@@ -8,6 +8,8 @@ from src.components.news_extraction import NewsExtractor
 from src.components.preprocess_newsdf import PreprocessNewsdf
 from src.constants.snowflakedatacreds import DATABASENAME,SCHEMA_NAME,TABLE_NAME
 from src.components.create_cortex_search_service import CortexSearchServiceManager
+from src.components.insert_dataframe_to_db import SnowflakeInserter
+from src.components.database_manager import SnowflakeDatabaseManager
 import pandas as pd
 
 pd.set_option("display.max_rows", None)  # Show all rows
@@ -89,14 +91,23 @@ class Pipeline:
 
             logging.info("<<< Initiating Preprocess News Dataframe Component")
             processed_newsdf = self.__call_preprocess_newsdf(newsdf)
-            logging.info(f"Preprocessed newsdf:\n{processed_newsdf.to_string()}")
+            # logging.info(f"Preprocessed newsdf:\n{processed_newsdf.to_string()}")
             logging.info("Completed Preprocess News Dataframe Component >>>")
             ###
 
             print(processed_newsdf)
 
+
+            ### Creating database and schema 
+            dbmanager = SnowflakeDatabaseManager(session=session)
+            dbmanager.create_database(database_name="MAIN_RAG_DB")
+            dbmanager.create_schema(database_name="MAIN_RAG_DB",schema_name="MAIN_RAG_SCHEMA")
+
+
             ### Inserting a dataframe into snowflake table 
 
+            inserter = SnowflakeInserter()
+            inserter.insert_dataframe(df=processed_newsdf)
 
             logging.info("Completed Pipeline !!!")
             return processed_newsdf

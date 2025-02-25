@@ -1,63 +1,81 @@
-# Snowflake Connection Code
-import streamlit
+# # Snowflake Connection Code
+# import streamlit
 
-from src.configuration.snowflake import SnowflakeConnector
+# from src.configuration.snowflake import SnowflakeConnector
 
-# News Extraction Code
+# # News Extraction Code
 
-from src.components.news_extraction import NewsExtractor
+# from src.components.news_extraction import NewsExtractor
 
-newsextraction = NewsExtractor()
-df = newsextraction.process_news(query="NVIDIA")
-
-
-from src.components.preprocess_newsdf import PreprocessNewsdf
-preprocess = PreprocessNewsdf(newsdf=df)
-newsdf = preprocess.process_newsdf()
+# newsextraction = NewsExtractor()
+# df = newsextraction.process_news(query="NVIDIA")
 
 
-snowflake_connector = SnowflakeConnector()
-session = snowflake_connector.get_session()
-print("session sucessfull")
-
-print(session.get_current_role()) 
-print(session.get_current_user())
-print(session.get_current_database())
-print(session.get_current_schema())
+# from src.components.preprocess_newsdf import PreprocessNewsdf
+# preprocess = PreprocessNewsdf(newsdf=df)
+# newsdf = preprocess.process_newsdf()
 
 
-# This class is responsible for creating the database, schema, and table in snowflake .
-from src.components.database_manager import SnowflakeDatabaseManager
-from src.components.format_df import SnowflakeDataTypeMapper
+# snowflake_connector = SnowflakeConnector()
+# session = snowflake_connector.get_session()
+# print("session sucessfull")
+
+# print(session.get_current_role()) 
+# print(session.get_current_user())
+# print(session.get_current_database())
+# print(session.get_current_schema())
 
 
-# -----------------------------------------------------------
-# Creating an instance of SnowflakeDatabaseManager
-db_manager = SnowflakeDatabaseManager(session)
-
-# Step 1: Create database
-db_name = "MAIN_RAG_DB"
-db_manager.create_database(db_name)
-
-# -----------------------------------------------------------
-# Step 2: Create schema
-schema_name = "MAIN_RAG_SCHEMA"
-db_manager.create_schema(db_name, schema_name)
-# -----------------------------------------------------------
+# # This class is responsible for creating the database, schema, and table in snowflake .
+# from src.components.database_manager import SnowflakeDatabaseManager
+# from src.components.format_df import SnowflakeDataTypeMapper
 
 
-# Mapping dataframe columns to snowflake data types
+# # -----------------------------------------------------------
+# # Creating an instance of SnowflakeDatabaseManager
+# db_manager = SnowflakeDatabaseManager(session)
 
-# Initialize the class
-data_type_mapper = SnowflakeDataTypeMapper()
+# # Step 1: Create database
+# db_name = "MAIN_RAG_DB"
+# db_manager.create_database(db_name)
 
-# Map the DataFrame columns to Snowflake-compatible dafta types
-columns = data_type_mapper.get_column_data_types(newsdf)
+# # -----------------------------------------------------------
+# # Step 2: Create schema
+# schema_name = "MAIN_RAG_SCHEMA"
+# db_manager.create_schema(db_name, schema_name)
+# # -----------------------------------------------------------
 
-# Print or use the resulting column data types
-print(columns)
-# -----------------------------------------------------------
 
-# Step 3: Create table
-table_name = "MY_NEW_TABLE"
-db_manager.create_table(db_name, schema_name, table_name, columns)
+# # Mapping dataframe columns to snowflake data types
+
+# # Initialize the class
+# data_type_mapper = SnowflakeDataTypeMapper()
+
+# # Map the DataFrame columns to Snowflake-compatible dafta types
+# columns = data_type_mapper.get_column_data_types(newsdf)
+
+# # Print or use the resulting column data types
+# print(columns)
+# # -----------------------------------------------------------
+
+# # Step 3: Create table
+# table_name = "MY_NEW_TABLE"
+# db_manager.create_table(db_name, schema_name, table_name, columns)
+
+
+
+
+class hello:
+    def check(self):
+        print(self)
+        return "Hello"
+    
+    def printcheck(cls):
+        print(cls)
+        
+        return cls.check()
+    
+
+h = hello()
+print(h.printcheck())
+
