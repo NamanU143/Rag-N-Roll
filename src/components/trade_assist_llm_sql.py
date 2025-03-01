@@ -6,7 +6,7 @@ def summarize_article(user_text, session, user_query):
     PROMPT_TEMPLATE = f"""
     You are a financial expert and sentiment analysis assistant. Based on the following news article, provide a structured summary 
     focusing on technical insights, trends, and financial metrics related to {user_query}. Your goal is to extract all relevant financial 
-    and technical details that a trader would find useful in decision-making.
+    and technical details that a trader would find useful in decision-making. 
 
     Article:
     {user_text}
