@@ -1,14 +1,14 @@
-from src.pipeline import Pipeline
-import streamlit as st 
+# from src.pipeline import Pipeline
+# import streamlit as st 
 
-pipeline = Pipeline()
+# pipeline = Pipeline()
 
-query = st.text_input("Enter the Stock Symbol :")
+# query = st.text_input("Enter the Stock Symbol :")
 
-if query:
-    st.write(f"You entered: {query}")
+# if query:
+#     st.write(f"You entered: {query}")
 
-newsdf = pipeline.initiate_pipeline(query=query)
+# resp = pipeline.initiate_pipeline(query=query)
 
-if not newsdf.empty:
-    st.dataframe(newsdf)
+# if resp != None :
+#     st.write(resp)

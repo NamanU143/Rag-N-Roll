@@ -34,12 +34,12 @@ class CortexSearchServiceManager:
         """
         try:
             # Construct the SQL for creating the Cortex Search service
-            table_name = TABLE_NAME
+            table_name = "MY_NEW_TABLE"
             service_name = "news_search"
             warehouse = "COMPUTE_WH"
             embedding_model = "snowflake-arctic-embed-l-v2.0"
             target_lag = "1 day"
-            attributes = ["ID", "AUTHOR", "DATE", "TITLE", "URL", "DESCRIPTION"]
+            attributes = ["ID","SOURCE", "AUTHOR", "DATE", "TITLE", "URL", "DESCRIPTION"]
             text_column = "CONTENT"
 
             attributes_str = ", ".join(attributes)  # Convert attributes list to a comma-separated string
@@ -64,6 +64,8 @@ class CortexSearchServiceManager:
         except Exception as e:
             logging.error(f"Error creating Cortex Search service '{service_name}': {e}")
             raise CustomException(e)
+        except IndexError as e:
+            logging.error(f"Index out of range error msg :{e}")
     
     # def search_financial_news(self,stock_query):
     #     """

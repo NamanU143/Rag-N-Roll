@@ -40,11 +40,8 @@ import logging
 import os
 from datetime import datetime
 
-# Ensure logs directory exists
 log_folder = os.path.join(os.getcwd(), "logs")
 os.makedirs(log_folder, exist_ok=True)
-
-# Single log file for all modules
 log_file_path = os.path.join(log_folder, datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + ".log")
 
 # Configure logging globally
@@ -57,6 +54,5 @@ logging.basicConfig(
     ]
 )
 
-# Reduce verbosity for noisy loggers
 for logger_name in ["snowflake.connector", "snowflake.core.rest", "urllib3.connectionpool"]:
     logging.getLogger(logger_name).setLevel(logging.ERROR)

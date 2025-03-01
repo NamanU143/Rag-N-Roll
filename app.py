@@ -2,8 +2,8 @@ import streamlit as st
 import pandas as pd
 from src.configuration.snowflake import SnowflakeConnector
 from src.components.news_extraction import NewsExtractor
-from src.components.trade_assist_llm import summarize_article, analyze_financial_sentiment
-from src.components.llm_response_extractor import FieldExtractor
+from components.trade_assist_llm_sql import summarize_article, analyze_financial_sentiment
+from components.cortex_response_extractor import FieldExtractor
 from src.components.insert_data_into_db import SnowflakeDataInserter
 from src.components.database_manager import SnowflakeDatabaseManager
 from components.format_df import SnowflakeDataTypeMapper

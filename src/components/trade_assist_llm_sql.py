@@ -72,6 +72,14 @@ def analyze_financial_sentiment(user_text, session, user_query):
 
 
 
+# predict_trend-Predict short-term & long-term stock impact from news
+# assess_risk-Measure risk level and recommend Buy/Hold/Sell
+# competitive_analysis-Compare news sentiment between two stocks
+# regulatory_impact-Identify if an article suggests regulatory risks
+# extract_event_timeline-Extract financial events with dates from news
+
+
+
 
 
 # def streamed_output(user_text, session, query):

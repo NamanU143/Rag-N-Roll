@@ -3,10 +3,10 @@ import pandas as pd
 from src.configuration.snowflake import SnowflakeConnector
 from src.components.news_extraction import NewsExtractor
 from src.components.database_manager import SnowflakeDatabaseManager
-from src.components.llm_response_extractor import FieldExtractor
+from components.cortex_response_extractor import FieldExtractor
 from src.components.create_cortex_search_service import CortexSearchServiceManager
 from snowflake.core import Root
-from src.components.trade_assist_llm import summarize_article, analyze_financial_sentiment
+from components.trade_assist_llm_sql import summarize_article, analyze_financial_sentiment
 from src.logger import setup_logger
 import logging
 
