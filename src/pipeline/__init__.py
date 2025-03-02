@@ -151,10 +151,11 @@ class Pipeline:
             cortexresp = self.__call_cortex_response_extractor(result=resp)
             logging.info("Completed Cortex Response Extractor Component >>>")
 
-            # print(cortexresp)
 
             # passing the response to trade assistllm component
-
+            logging.info("<<< Calling AI agents component")
+            
+            logging.info("<<< Calling AI agents component")
 
             # Implement Conversation History
 
