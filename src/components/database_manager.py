@@ -1,5 +1,5 @@
 import logging
-from configuration.snowflakeconfig import SnowflakeConnector  # Assuming SnowflakeConnector is the class that manages Snowflake session
+from src.configuration.snowflakeconfig import SnowflakeConnector  # Assuming SnowflakeConnector is the class that manages Snowflake session
 from src.exception import CustomException  # Assuming you have a custom exception class
 
 class SnowflakeDatabaseManager:

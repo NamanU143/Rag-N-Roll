@@ -4,7 +4,7 @@ from src.logger import logging
 from snowflake.core import Root
 import logging
 from src.exception import CustomException
-from configuration.snowflakeconfig import SnowflakeConnector
+from src.configuration.snowflakeconfig import SnowflakeConnector
 from src.components.news_extraction import NewsExtractor
 from src.components.preprocess_newsdf import PreprocessNewsdf
 from src.constants.snowflakedatacreds import DATABASENAME,SCHEMA_NAME,TABLE_NAME
