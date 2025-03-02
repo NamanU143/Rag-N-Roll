@@ -71,16 +71,17 @@ class SnowflakeConnector:
         except Exception as e:
             logging.error(f"Error retrieving Snowflake session: {str(e)}")
             raise CustomException(f"Error retrieving Snowflake session: {str(e)}")
-    # def get_root(self):
-    #     """
-    #     Returns the Snowflake session object.
-    #     """
-    #     try:
-    #         logging.info(f"Returning the Snowflake session root object :\n\t {self.root}")
-    #         return self.root
-    #     except Exception as e:
-    #         logging.error(f"Error retrieving Snowflake session: {str(e)}")
-    #         raise CustomException(f"Error retrieving Snowflake session: {str(e)}")
+    
+    def get_root(self):
+        """
+        Returns the Snowflake session object.
+        """
+        try:
+            logging.info(f"Returning the Snowflake session root object :\n\t {self.root}")
+            return self.root
+        except Exception as e:
+            logging.error(f"Error retrieving Snowflake session: {str(e)}")
+            raise CustomException(f"Error retrieving Snowflake session: {str(e)}")
 
     def close_session(self):
         """
