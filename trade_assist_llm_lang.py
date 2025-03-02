@@ -49,7 +49,7 @@ class SnowflakeCortexChat:
         """
 
         return self._execute_cortex_query(prompt)
-
+    
     def analyze_financial_sentiment(self, article_text, user_query):
         """Performs sentiment analysis on financial news."""
         prompt = f"""

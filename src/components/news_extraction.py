@@ -5,8 +5,6 @@ from src.logger import logging
 from src.exception import CustomException
 import time
 
-
-
 # Setting up custom logger
 # setup_logger()
 
