@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from src.configuration.snowflake import SnowflakeConnector
+from configuration.snowflakeconfig import SnowflakeConnector
 from src.components.news_extraction import NewsExtractor
 from src.components.database_manager import SnowflakeDatabaseManager
 from components.cortex_response_extractor import FieldExtractor

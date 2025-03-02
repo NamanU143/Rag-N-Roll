@@ -4,7 +4,7 @@ from src.logger import logging
 from snowflake.core import Root
 import logging
 from src.exception import CustomException
-from src.configuration.snowflake import SnowflakeConnector
+from configuration.snowflakeconfig import SnowflakeConnector
 from src.components.news_extraction import NewsExtractor
 from src.components.preprocess_newsdf import PreprocessNewsdf
 from src.constants.snowflakedatacreds import DATABASENAME,SCHEMA_NAME,TABLE_NAME
@@ -12,6 +12,7 @@ from src.components.create_cortex_search_service import CortexSearchServiceManag
 from src.components.insert_dataframe_to_db import SnowflakeInserter
 from src.components.database_manager import SnowflakeDatabaseManager
 from src.components.cortex_response_extractor import FieldExtractor
+
 import pandas as pd
 
 pd.set_option("display.max_rows", None)  # Show all rows
@@ -151,11 +152,11 @@ class Pipeline:
             cortexresp = self.__call_cortex_response_extractor(result=resp)
             logging.info("Completed Cortex Response Extractor Component >>>")
 
+            
+            # Here as we are streaming the output the moment we get the data from our agents we have to directly call the ai agents 
+            # in the ui or streamlit app else the stream might not work
 
             # passing the response to trade assistllm component
-            logging.info("<<< Calling AI agents component")
-            
-            logging.info("<<< Calling AI agents component")
 
             # Implement Conversation History
 
