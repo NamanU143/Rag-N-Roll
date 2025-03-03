@@ -4,7 +4,7 @@ from src.logger import logging
 from snowflake.core import Root
 import logging
 from src.exception import CustomException
-from src.configuration.snowflakeconfig import SnowflakeConnector
+from src.configuration.snowflake import SnowflakeConnector
 from src.components.news_extraction import NewsExtractor
 from src.components.preprocess_newsdf import PreprocessNewsdf
 from src.constants.snowflakedatacreds import DATABASENAME,SCHEMA_NAME,TABLE_NAME
@@ -99,7 +99,7 @@ class Pipeline:
             logging.error(f"Error in Cortex Response Extractor Component")
             raise CustomException(e)
 
-    def initiate_pipeline(self,query):
+    def initiate_news_extraction_pipeline(self,query):
         try:
             logging.info("Starting Pipeline !!!")
 
@@ -152,20 +152,17 @@ class Pipeline:
             cortexresp = self.__call_cortex_response_extractor(result=resp)
             logging.info("Completed Cortex Response Extractor Component >>>")
 
-            
-            # Here as we are streaming the output the moment we get the data from our agents we have to directly call the ai agents 
-            # in the ui or streamlit app else the stream might not work
-
-            # passing the response to trade assistllm component
-
-            # Implement Conversation History
-
-
             # when pipeline ends truncate the results for a single user and store the previous results in the conversation history
-            logging.info("Completed Pipeline !!!")
+            logging.info("Completed News Extraction Pipeline !!!")
             return cortexresp
         except Exception as e:
             logging.error(f"Error in Pipeline {CustomException(e)}")
+            raise CustomException(e)
+
+    def initiate_balance_sheet_extraction(self):
+        try:
+            pass
+        except Exception as e:
             raise CustomException(e)
 
 ###################################################################################################################################

@@ -1,33 +1,35 @@
 from snowflake.snowpark import Session
 from src.logger import logging
+from src.configuration.snowflake import SnowflakeConnector
 
+conn = SnowflakeConnector()
+session = conn.get_session()
 
-def summarize_article(user_text, session, user_query):
-    PROMPT_TEMPLATE = f"""
-    You are a financial expert and sentiment analysis assistant. Based on the following news article, provide a structured summary 
-    focusing on technical insights, trends, and financial metrics related to {user_query}. Your goal is to extract all relevant financial 
-    and technical details that a trader would find useful in decision-making. 
+def summarize_article(article_text, focus_topic, user_query):
+    prompt = f"""
+        You are a financial expert. Summarize the following article focusing on {focus_topic}. Extract key financial and trading insights.
 
-    Article:
-    {user_text}
+        **Article:**
+        {article_text}
 
-    **Summary:**  
-    - **Stock Performance & Market Reaction:** (Mention any price movements, investor sentiment, and market impact.)  
-    - **Key Financial Metrics:** (Highlight earnings, revenue, profit margins, debt, P/E ratio, or any other relevant financial figures.)  
-    - **Industry Trends & Macroeconomic Factors:** (Mention any broader trends, regulatory impacts, or sector-specific news affecting the stock.)  
-    - **Company-Specific Developments:** (Include major announcements, product launches, M&A activities, leadership changes, etc.)  
-    - **Sentiment Analysis:** (Summarize whether the article conveys a bullish, bearish, or neutral sentiment based on the data.)  
-    """
+        **Summary:**
+        - **Stock Performance & Market Reaction:** (Price movements, investor sentiment, and market impact.)
+        - **Key Financial Metrics:** (Earnings, revenue, debt, P/E ratio, etc.)
+        - **Industry Trends & Macro Factors:** (Regulatory impact, sector trends.)
+        - **Company-Specific News:** (Mergers, leadership changes, product launches.)
+        - **Sentiment Analysis:** (Classify sentiment as Bullish, Bearish, or Neutral.)
+        """
 
     sql_query = f"""
     SELECT SNOWFLAKE.CORTEX.COMPLETE(
         'mistral-large2',
         ARRAY_CONSTRUCT(
-            OBJECT_CONSTRUCT('role', 'user', 'content', {PROMPT_TEMPLATE})
+            OBJECT_CONSTRUCT('role', 'user', 'content', {prompt})
         ),
         OBJECT_CONSTRUCT(
             'temperature', 0.7,
-            'max_tokens', 300
+            'max_tokens', 300,
+            'stream',true
         )
     )
     """
